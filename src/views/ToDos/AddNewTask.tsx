@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Task from "../../types/task";
 import { addTask } from "../../store/Todo/ToDoAction";
-import ToDoStore from "../../store/ToDoStore";
+import ToDoStore from "../../store/Todo/ToDoStore";
 
 const initalTask: Task = {
   title: "",
