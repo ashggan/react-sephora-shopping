@@ -1,25 +1,23 @@
 import { useEffect, useState } from "react";
 import { Combobox } from "@headlessui/react";
-import { useGetCategoriesListQuery } from "../services/categoryApi";
 import { Category } from "../types/category";
+import { CategoryProp } from "../types/props";
 
-export default function Searchproduct() {
+export default function SearchProduct({ categories }: CategoryProp) {
   const [query, setQuery] = useState("");
-  const { data } = useGetCategoriesListQuery("");
-  const category = data?.data;
   const [selectedCategory, setSelectedCategory] =
     useState("Search by category");
 
   useEffect(() => {
-    if (category && category.length > 0) {
-      setSelectedCategory(category[0].attributes.label);
+    if (categories && categories.length > 0) {
+      setSelectedCategory(categories[0].attributes.label);
     }
-  }, [category]);
+  }, [categories]);
 
   const filteredCategory =
     query === ""
-      ? category
-      : category?.filter((cat: Category) => {
+      ? categories
+      : categories?.filter((cat: Category) => {
           return cat.attributes.label
             .toLowerCase()
             .includes(query.toLowerCase());

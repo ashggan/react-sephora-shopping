@@ -5,6 +5,12 @@ export interface Product {
   relationships: Relationships;
 }
 
+export interface ProductState {
+  products: Product[];
+  status: string;
+  error: string | null | undefined;
+}
+
 export interface ProductApi {
   data: Product[];
 }

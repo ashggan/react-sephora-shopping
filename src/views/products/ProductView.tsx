@@ -12,6 +12,7 @@ export default function ProductView() {
     React.createElement("div", {
       dangerouslySetInnerHTML: { __html: rawHTML },
     });
+
   return (
     <>
       {isLoading ? (
