@@ -1,15 +1,18 @@
 import { useParams } from "react-router-dom";
-import { useGetProdyctByIdQuery } from "../../services/productsApi";
 import Loading from "../../components/Loading";
-import React from "react";
+import fetchProduct from "../../utils/useFetchProductByid";
+import { createElement, useMemo } from "react";
+import { useShoppingCart } from "../../context/shoppingCartContext";
 
 export default function ProductView() {
   const { id } = useParams();
-  const { data, isLoading } = useGetProdyctByIdQuery(id as string);
+  const { increaseQuantity } = useShoppingCart();
+  const { isLoading, data } = fetchProduct("/v2/list", id as string);
 
-  const product = data?.data;
+  const product = useMemo(() => data, [data]);
+
   const renderHTML = (rawHTML: string) =>
-    React.createElement("div", {
+    createElement("div", {
       dangerouslySetInnerHTML: { __html: rawHTML },
     });
 
@@ -18,7 +21,7 @@ export default function ProductView() {
       {isLoading ? (
         <Loading />
       ) : (
-        product && (
+        product.attributes && (
           <div className="grid grid-cols-1 gap-4 my-10 md:grid-cols-2 lg:grid-cols-2">
             <div className="carousel rounded-box w-full h-[400px]">
               {product.attributes["image-urls"].map((img, i) => (
@@ -34,7 +37,14 @@ export default function ProductView() {
               {renderHTML(product.attributes.description)}
               <p className="text-xl uppercase font-bold">benefits</p>
               {renderHTML(product.attributes.benefits)}
-              <button className="btn btn-primary   w-36">Add to Cart</button>
+              <button
+                className="btn btn-primary w-36"
+                onClick={() =>
+                  increaseQuantity(product.id, product.attributes.price)
+                }
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         )

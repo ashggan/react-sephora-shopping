@@ -1,51 +1,32 @@
-// import { useEffect } from "react";
+import { useMemo } from "react";
 import Loading from "../../components/Loading";
 import ProductCard from "../../components/ProductCard";
-import SearchProduct from "../../components/SearchProduct";
-import { useGetCategoriesListQuery } from "../../services/categoryApi";
-import {
-  useGetProdyctsListQuery,
-  useSeatchProductByCategoryQuery,
-} from "../../services/productsApi";
 import { Product } from "../../types/product";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   fetchProducts,
-//   getProductsList,
-//   getProductsStatus,
-// } from "../../store/product/productSlice";
+
+import useFetch from "../../utils/useFetch";
 
 export default function ProductsList() {
-  const { data, isLoading } = useGetProdyctsListQuery("");
-  const { data: categoriesData } = useGetCategoriesListQuery("");
-
-  const products = data?.data;
-  const categories = categoriesData?.data;
-
-  // ########################################
-  // const dispatch = useDispatch();
-  // const productList = useSelector(getProductsList);
-  // const productsStatus = useSelector(getProductsStatus);
-
-  // useEffect(() => {
-  //   if (productsStatus === "idle") {
-  //     // dispatch(fetchProducts());
-  //   }
-  // });
-
-  // const { data: CateData } = useSeatchProductByCategoryQuery("makeup");
-  // console.log(CateData?.data);
-
-  // useEffect(() => {}, []);
-
+  const { isLoading, data, serverError } = useFetch("/v2/list");
+  const products = useMemo(() => data, [data]);
+  const handleRefresh = () => window.location.reload(); // Refresh the page
+  if (serverError) {
+    return (
+      <>
+        <div className="h-[100vh] mt-10">
+          <p className="text-center text-xl font-bold ">{serverError}</p>
+          <button className="btn " onClick={handleRefresh}>
+            Refresh
+          </button>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       {isLoading ? (
         <Loading />
       ) : (
         <>
-          {categories && <SearchProduct categories={categories} />}
-
           <div className="grid grid-cols-1 gap-4 my-10 md:grid-cols-3 lg:grid-cols-4">
             {products &&
               products.map((product: Product) => (

@@ -1,12 +1,14 @@
 import NavBar from "./components/NavBar";
-import "./App.css";
 import { Outlet } from "react-router-dom";
+import { ShoppingCartProvider } from "./context/shoppingCartContext";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <Outlet />
+      <ShoppingCartProvider>
+        <NavBar />
+        <Outlet />
+      </ShoppingCartProvider>
     </>
   );
 }
