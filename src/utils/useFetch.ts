@@ -16,13 +16,11 @@ const useFetch = (url: string) => {
       try {
         const res = await axios.request(addParams(url)());
         const data = res.data;
+        setData(data.data);
         setIsLoading(false);
-        setData(data);
-
-        // console.log(res.data);
+        console.log(res.data);
         // setTimeout(() => {
         //   setIsLoading(false);
-
         //   setData(products);
         // }, 1000);
       } catch (err: any) {

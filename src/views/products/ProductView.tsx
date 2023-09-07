@@ -7,8 +7,7 @@ import { useShoppingCart } from "../../context/shoppingCartContext";
 export default function ProductView() {
   const { id } = useParams();
   const { increaseQuantity } = useShoppingCart();
-  const { isLoading, data } = fetchProduct("/v2/list", id as string);
-
+  const { isLoading, data } = fetchProduct("/v2/detail", id as string);
   const product = useMemo(() => data, [data]);
 
   const renderHTML = (rawHTML: string) =>

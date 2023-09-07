@@ -7,6 +7,9 @@ import useFetch from "../../utils/useFetch";
 
 export default function ProductsList() {
   const { isLoading, data, serverError } = useFetch("/v2/list");
+
+  // console.log(data);
+
   const products = useMemo(() => data, [data]);
   const handleRefresh = () => window.location.reload(); // Refresh the page
   if (serverError) {

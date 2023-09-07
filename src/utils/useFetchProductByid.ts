@@ -12,12 +12,13 @@ const fetchProduct = (url: string, id: string) => {
   useEffect(() => {
     setIsLoading(true);
 
-    const fetchData = async (_url: string, id: string) => {
+    const fetchData = async (url: string, id: string) => {
       try {
         const res = await axios.request(addParams(url)({ id }));
         const data = res.data;
         setIsLoading(false);
-        setData(data);
+        setData(data.data);
+        console.log(data);
 
         // console.log(res.data);
         // setTimeout(() => {
