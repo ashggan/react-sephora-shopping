@@ -2,7 +2,6 @@ const { VITE_X_RapidAPI_Key, VITE_X_RapidAPI_Host, VITE_BASE_URL } = import.meta
   .env;
 // Urls
 export const PRODUCTS_BASE_URL = "https://sephora.p.rapidapi.com/products";
-export const CATEGOREIS_BASE_URL = "https://sephora.p.rapidapi.com/categories/";
 
 export const BASE_URL = VITE_BASE_URL;
 

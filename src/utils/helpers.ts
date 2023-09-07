@@ -1,10 +1,10 @@
 import { headers, BASE_URL } from "./constants";
 
-interface Params {
+type Params = {
   id?: string;
   size?: number;
   root_category?: string;
-}
+};
 
 export const addParams =
   (url: string) =>
