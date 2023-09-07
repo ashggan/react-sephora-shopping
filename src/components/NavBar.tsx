@@ -45,9 +45,9 @@ export default function NavBar() {
                 </span>
                 <span className="text-info">Subtotal: ${getTotal()}</span>
                 <div className="card-actions">
-                  <button className="btn btn-primary btn-block">
+                  <NavLink to="/cart" className="btn btn-primary btn-block">
                     View cart
-                  </button>
+                  </NavLink>
                 </div>
               </div>
             </div>

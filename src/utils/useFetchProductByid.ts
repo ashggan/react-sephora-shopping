@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { addParams } from "./helpers";
-// import products from "../types/data.json";
+import products from "../types/data.json";
 import { Product } from "../types/product";
 
 const fetchProduct = (url: string, id: string) => {
@@ -11,22 +11,22 @@ const fetchProduct = (url: string, id: string) => {
 
   useEffect(() => {
     setIsLoading(true);
-
     const fetchData = async (url: string, id: string) => {
       try {
-        const res = await axios.request(addParams(url)({ id }));
-        const data = res.data;
-        setIsLoading(false);
-        setData(data.data);
-        console.log(data);
-
-        // console.log(res.data);
-        // setTimeout(() => {
-        //   const product = products.filter((p) => p.id === id);
-        //   //   console.log(product);
-        //   setIsLoading(false);
-        //   setData(product[0]);
-        // }, 1000);
+        if (import.meta.env.MODE === "development") {
+          setTimeout(() => {
+            const product = products.filter((p) => p.id === id);
+            //   console.log(product);
+            setIsLoading(false);
+            setData(product[0] as Product);
+          }, 1000);
+        } else {
+          console.log("online");
+          const res = await axios.request(addParams(url)({ id }));
+          const data = res.data;
+          setIsLoading(false);
+          setData(data.data);
+        }
       } catch (err: any) {
         setServerError(err?.message);
         setIsLoading(false);
