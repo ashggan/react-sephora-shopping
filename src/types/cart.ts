@@ -5,6 +5,7 @@ export type shoppingCartProviderProps = {
 };
 
 export type shoppingCartContext = {
+  cartItems: cartItem[];
   getItemsTotal: () => number;
   getTotal: () => number;
   getItemsQuantity: (id: string) => number;

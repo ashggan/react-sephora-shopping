@@ -4,7 +4,6 @@ import {
   shoppingCartProviderProps,
   shoppingCartContext,
 } from "../types/cart";
-// import { getPrice } from "../utils/helpers";
 
 const ShoppingCartContext = createContext({} as shoppingCartContext);
 
@@ -62,6 +61,7 @@ export const ShoppingCartProvider = ({
   return (
     <ShoppingCartContext.Provider
       value={{
+        cartItems,
         getTotal,
         getItemsTotal,
         getItemsQuantity,
@@ -74,5 +74,3 @@ export const ShoppingCartProvider = ({
     </ShoppingCartContext.Provider>
   );
 };
-
-//

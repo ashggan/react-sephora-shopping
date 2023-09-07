@@ -21,7 +21,7 @@ export default function ProductView() {
       {isLoading ? (
         <Loading />
       ) : (
-        product.attributes && (
+        product && (
           <div className="grid grid-cols-1 gap-4 my-10 md:grid-cols-2 lg:grid-cols-2">
             <div className="carousel rounded-box w-full h-[400px]">
               {product.attributes["image-urls"].map((img, i) => (

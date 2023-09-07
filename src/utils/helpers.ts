@@ -1,5 +1,4 @@
 import { headers, BASE_URL } from "./constants";
-import fetchProduct from "./useFetchProductByid";
 
 interface Params {
   id?: string;
@@ -15,8 +14,3 @@ export const addParams =
     headers,
     params,
   });
-
-export const getPrice = (id: string) => {
-  const { data } = fetchProduct("/v2/list", id as string);
-  return data.attributes.price;
-};
