@@ -7,6 +7,7 @@ const ShoppingCart = () => {
     decreaseQuantity,
     removeItem,
     getTotal,
+    checkout,
   } = useShoppingCart();
 
   return (
@@ -51,7 +52,10 @@ const ShoppingCart = () => {
 
           <div className="mt-8">
             <p className="text-xl font-medium">Total: ${getTotal()}</p>
-            <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md">
+            <button
+              className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
+              onClick={() => checkout()}
+            >
               Proceed to Checkout
             </button>
           </div>

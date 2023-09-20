@@ -12,6 +12,7 @@ export type shoppingCartContext = {
   increaseQuantity: (id: string, price: number) => void;
   decreaseQuantity: (id: string) => void;
   removeItem: (id: string) => void;
+  checkout: () => void;
 };
 
 export type cartItem = {

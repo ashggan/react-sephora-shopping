@@ -14,7 +14,13 @@ export const ShoppingCartProvider = ({
 }: shoppingCartProviderProps) => {
   const [cartItems, setCartItems] = useState<cartItem[]>([]);
 
-  const getItemsTotal = () => cartItems.length;
+  const getItemsTotal = () => {
+    let total = 0;
+    cartItems.length !== 0
+      ? cartItems.forEach((h) => (total += h.quantity))
+      : 0;
+    return total;
+  };
 
   const getTotal = () => {
     let total = 0;
@@ -23,6 +29,8 @@ export const ShoppingCartProvider = ({
       : 0;
     return total;
   };
+
+  const checkout = () => setCartItems([]);
 
   const getItemsQuantity = (id: string) =>
     cartItems.find((i) => i.id === id)?.quantity || 0;
@@ -68,6 +76,7 @@ export const ShoppingCartProvider = ({
         increaseQuantity,
         decreaseQuantity,
         removeItem,
+        checkout,
       }}
     >
       {children}
