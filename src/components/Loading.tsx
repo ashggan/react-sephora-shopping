@@ -1,6 +1,9 @@
 export default function Loading() {
   return (
-    <div className=" h-[50vh] flex justify-center items-center">
+    <div
+      className=" h-[50vh] flex justify-center items-center"
+      data-testid="loading"
+    >
       <div className="grid grid-cols-4 gap-4 text-4xl">
         <span className="loading loading-spinner text-primary"></span>
         <span className="loading loading-spinner text-secondary"></span>
