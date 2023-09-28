@@ -29,7 +29,10 @@ export default function ProductView() {
                 </div>
               ))}
             </div>
-            <div className="text-left flex flex-col space-y-5">
+            <div
+              className="text-left flex flex-col space-y-5"
+              data-testid="product-details"
+            >
               <h1 className="text-2xl uppercase font-bold">
                 {product.attributes.name}
               </h1>

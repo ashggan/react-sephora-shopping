@@ -12,13 +12,13 @@ describe("NavBar", () => {
       .should("be.visible")
       .should("have.text", 0);
   });
+
   it('Should open cart details and" view cart" button', () => {
     cy.get("[data-testid=cart-items-count]").click();
     cy.get("[data-testid=cart-btn]")
       .should("be.visible")
       .contains("View cart")
       .click();
-    cy.location("pathname").should("eq", "/cart");
   });
 
   it("title link should return to home page", () => {

@@ -7,7 +7,7 @@ export default function ProductCard({ product }: ProductProp) {
   const id = product.id;
   const { increaseQuantity } = useShoppingCart();
   return (
-    <div className="card p-0 bg-[#fff] shadow-xl">
+    <div className="card p-0 bg-[#fff] shadow-xl" data-testid="product-card">
       <Link to={`/${id}/${slug}`}>
         <figure className="p-16">
           <img
@@ -21,6 +21,7 @@ export default function ProductCard({ product }: ProductProp) {
         <div className="card-actions justify-between">
           <div className="font-bold text-md">{product.attributes.price} $</div>
           <button
+            data-testid="add-cart"
             className="badge badge-primary p-4"
             onClick={() => increaseQuantity(id, product.attributes.price)}
           >
